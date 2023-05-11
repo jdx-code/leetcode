@@ -20,7 +20,7 @@
 
 var twoSum = function(nums, target) {
 
-    // Method #1: Bruteforce approach
+    // Method #1: Bruteforce approach   -- Quadratic runtime O(n*n)
     // let output = [];
     // for(let i=0; i<nums.length; i++){
     //     for(j=i+1; j<nums.length; j++){
@@ -32,7 +32,7 @@ var twoSum = function(nums, target) {
     // }
     // return output;
 
-    // Method #2: Two Pass approach
+    // Method #2: Two Pass approach     -- Linear runtime (approx.) O(2*n) ==> O(n)
     let hashmap = {}
     for(let i=0; i<nums.length; i++){
         hashmap[nums[i]] = i                // hashmap taking key:value pairs from nums array, key is the number, value is the index 

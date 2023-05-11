@@ -33,16 +33,26 @@ var twoSum = function(nums, target) {
     // return output;
 
     // Method #2: Two Pass approach     -- Linear runtime (approx.) O(2*n) ==> O(n)
+    // let hashmap = {}
+    // for(let i=0; i<nums.length; i++){
+    //     hashmap[nums[i]] = i                // hashmap taking key:value pairs from nums array, key is the number, value is the index 
+    // }
+    // for(let i=0; i<nums.length; i++){
+    //     let complement = target - nums[i]                       // 9 - 2 = 7
+    //     if(hashmap[complement] && hashmap[complement] != i){    // hashmap[7] && 1 != 0 
+    //         return [i, hashmap[complement]]                     // [0,1]
+    //     }
+    // }    
+
+    // Method #3: Single Pass approach  -- Linear runtime O(n)
     let hashmap = {}
     for(let i=0; i<nums.length; i++){
-        hashmap[nums[i]] = i                // hashmap taking key:value pairs from nums array, key is the number, value is the index 
-    }
-    for(let i=0; i<nums.length; i++){
-        let complement = target - nums[i]                       // 9 - 2 = 7
-        if(hashmap[complement] && hashmap[complement] != i){    // hashmap[7] && 1 != 0 
-            return [i, hashmap[complement]]                     // [0,1]
+        let difference = target - nums[i]
+        if(difference in hashmap){
+            return [hashmap[difference], i]
         }
-    }    
+        hashmap[nums[i]] = i
+    }
 }
 
 console.log(twoSum([2, 7, 11, 15], 9))

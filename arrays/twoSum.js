@@ -19,16 +19,30 @@
 // Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
 
 var twoSum = function(nums, target) {
-    let output = [];
+
+    // Method #1: Bruteforce approach
+    // let output = [];
+    // for(let i=0; i<nums.length; i++){
+    //     for(j=i+1; j<nums.length; j++){
+    //         if(nums[i]+nums[j]===target){
+    //             output = [i, j];
+    //             break;
+    //         }                
+    //     }
+    // }
+    // return output;
+
+    // Method #2: Two Pass approach
+    let hashmap = {}
     for(let i=0; i<nums.length; i++){
-        for(j=i+1; j<nums.length; j++){
-            if(nums[i]+nums[j]===target){
-                output = [i, j];
-                break;
-            }                
-        }
+        hashmap[nums[i]] = i                // hashmap taking key:value pairs from nums array, key is the number, value is the index 
     }
-    return output;
+    for(let i=0; i<nums.length; i++){
+        let complement = target - nums[i]                       // 9 - 2 = 7
+        if(hashmap[complement] && hashmap[complement] != i){    // hashmap[7] && 1 != 0 
+            return [i, hashmap[complement]]                     // [0,1]
+        }
+    }    
 }
 
 console.log(twoSum([2, 7, 11, 15], 9))
